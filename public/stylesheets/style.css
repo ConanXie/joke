@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+}
+body {
+    font-family: '微软雅黑';
+}
+.box {
+    position: relative;
+    width: 70%;
+    margin: 80px 0 80px 5%;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px 1px rgba(50, 50, 50, 0.24);
+    opacity: 0;
+}
+.box h1 {
+    border-radius: 2px 2px 0 0;
+    padding-left: 2%;
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #fff;
+    line-height: 2em;
+}
+.box p {
+    padding: 5% 2%;
+    color: #343434;
+    font-size: 1.8em;
+    line-height: 1.5em;
+    text-decoration: none;
+}
+.box img {
+    padding-left: 2%;
+}
+.show {
+    animation: show 0.5s ease-in-out forwards;
+    -webkit-animation: show 0.5s ease-in-out forwards;
+}
+@keyframes show {
+    0% {
+        top: 50px;
+        box-shadow: none;
+    }
+    100% {
+        opacity: 1;
+        top: 0;
+        box-shadow: 0 3px 16px 1px rgba(50, 50, 50, 0.24);
+    }
+}
+@-webkit-keyframes show {
+    0% {
+        top: 50px;
+    }
+    100% {
+        opacity: 1;
+        top: 0;
+        box-shadow: 0 3px 16px 1px rgba(50, 50, 50, 0.24);
+    }
+}
+.hide {
+    animation: hide .5s ease-in-out;
+    -webkit-animation: hide .5s ease-in-out;
+}
+@keyframes hide {
+    0% {
+        opacity: 1;
+        top: 0;
+        box-shadow: 0 3px 16px 1px rgba(50, 50, 50, 0.24)
+    }
+    100% {
+        top: -50px;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes hide {
+    0% {
+        opacity: 1;
+        top: 0;
+        box-shadow: 0 3px 16px 1px rgba(50, 50, 50, 0.24)
+    }
+    100% {
+        top: -50px;
+        opacity: 0;
+    }
+}
+#btn {
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    border: none;
+    outline: none;
+    background: #fff;
+    font-size: 2em;
+    line-height: 1.5em;
+    color: #888;
+    padding: 0 1em;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 1px rgba(50, 50, 50, 0.24);
+    transition: color 0.5s;
+    -webkit-transition: 0.5s;
+}
+#btn:active {
+    color: #000;
+}
+@media screen and (max-width: 800px) {
+    .box {
+        width: 95%;
+        margin: 20% auto;
+    }
+    .box h1 {
+        font-size: 0.8em;
+    }
+    .box p {
+        font-size: 1.2em;
+    }
+    .box img {
+        width: 96%;
+    }
+    #btn {
+        font-size: 1.5em;
+        margin-right: 3%;
+        bottom: 50px;
+        display: none;
+    }
+}

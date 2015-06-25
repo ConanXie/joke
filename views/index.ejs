@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=0, initial-scale=1, width=device-width">
+    <title>News</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script>
+        window.onload = function () {
+            var html = document.querySelector('html');
+            var a, y;
+            html.addEventListener('touchstart', function (e) {
+                var touch = e.touches[0];
+                x = touch.clientX;
+                y = touch.clientY;
+            }, false);
+            html.addEventListener('touchend', function (e) {
+                var touch = e.changedTouches[0];
+                x -= touch.clientX;
+                y -= touch.clientY;
+                if (y > 50) {
+                    if (status === 'load') {
+                    return;
+                }
+                status = 'load';
+                box.className = 'box hide';
+                setTimeout(function () {
+                    if (data.detail[count].picUrl) {
+                        count++;
+                    }
+                    author.innerHTML = data.detail[count].author;
+                    content.innerHTML = data.detail[count].content;
+                    box.className = 'box show';
+                    author.style.backgroundColor = color[Math.floor(Math.random()*8)];
+                    status = 'change';
+                    count++;
+                }, 500);
+                if (count == 20) {
+                    count = 0;
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            data = JSON.parse(xhr.responseText);
+                            console.log(data);
+                        }
+                    };
+                    xhr.open('post', '/getData', true);
+                    xhr.send('r=' + Math.random());
+                }
+                }
+            }, false);
+            var box = document.querySelector('.box');
+            var author = document.querySelector('#author');
+            var content = document.querySelector('#content');
+            var btn = document.querySelector('#btn');
+            var color = ['#47DEEA','#4781EA','#9C47EA','#E647EA','#EA47B6','#EA4772','#26D01A', '#FF873D'];
+            var status = 'change';
+            var data;
+            var count = 0;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    data = JSON.parse(xhr.responseText);
+                    console.log(data);
+                    if (data.detail[count].picUrl) {
+                        count++;
+                    }
+                    author.innerHTML = data.detail[count].author;
+                    content.innerHTML = data.detail[count].content;
+                    box.className = 'box show';
+                    author.style.backgroundColor = color[Math.floor(Math.random()*8)];
+                    count++;
+                }
+            };
+            xhr.open('post', '/getData', true);
+            xhr.send('r=' + Math.random());
+            btn.addEventListener('click', function (e) {
+                console.log(status);
+                if (status === 'load') {
+                    return;
+                }
+                status = 'load';
+                box.className = 'box hide';
+                setTimeout(function () {
+                    if (data.detail[count].picUrl) {
+                        count++;
+                    }
+                    author.innerHTML = data.detail[count].author;
+                    content.innerHTML = data.detail[count].content;
+                    box.className = 'box show';
+                    author.style.backgroundColor = color[Math.floor(Math.random()*8)];
+                    status = 'change';
+                    count++;
+                }, 500);
+                if (count == 20) {
+                    count = 0;
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            data = JSON.parse(xhr.responseText);
+                            console.log(data);
+                        }
+                    };
+                    xhr.open('post', '/getData', true);
+                    xhr.send('r=' + Math.random());
+                }
+            }, false);
+        };
+    </script>
+</head>
+<body>
+    <div class="box">
+        <h1 id="author"></h1>
+        <p id="content"></p>
+    </div>
+    <input type="button" id="btn" value="change">
+</body>
+</html>
