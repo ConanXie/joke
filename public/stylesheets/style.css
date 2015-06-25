@@ -6,7 +6,7 @@ html{
     height: 100%;
 }
 body {
-    font-family: '微软雅黑';
+    font-family: '微软雅黑 Light';
 }
 .box {
     position: relative;
@@ -27,12 +27,9 @@ body {
 .box p {
     padding: 5% 2%;
     color: #343434;
-    font-size: 1.8em;
-    line-height: 1.5em;
-    text-decoration: none;
-}
-.box img {
-    padding-left: 2%;
+    font-size: 1.6em;
+    letter-spacing: 2px;
+    line-height: 1.8em;
 }
 .show {
     animation: show 0.5s ease-in-out forwards;
@@ -98,11 +95,12 @@ body {
     padding: 0 1em;
     border-radius: 2px;
     box-shadow: 0 2px 5px 1px rgba(50, 50, 50, 0.24);
-    transition: color 0.5s;
-    -webkit-transition: 0.5s;
+    transition: box-shadow 0.5s, color 0.5s;
+    -webkit-transition: box-shadow 0.5s, color 0.5s;
 }
-#btn:active {
+#btn:hover {
     color: #000;
+    box-shadow: 0 2px 15px 1px rgba(50, 50, 50, 0.34);
 }
 @media screen and (max-width: 800px) {
     .box {
@@ -115,13 +113,7 @@ body {
     .box p {
         font-size: 1.2em;
     }
-    .box img {
-        width: 96%;
-    }
     #btn {
-        font-size: 1.5em;
-        margin-right: 3%;
-        bottom: 50px;
         display: none;
     }
 }
